@@ -60,6 +60,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     position: relative;
+    margin: 1.5em;
 }
 .title {
     text-align: center;
@@ -75,6 +76,9 @@ body {
     background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
 }
 .botones button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     border-radius: 1px;
     border: 1px solid #000;
@@ -129,6 +133,9 @@ body {
 }
 #jugarDeNuevo:hover {
     background-color: #c59b26;
+}
+img {
+    width: 80%;
 }
 footer {
     font-family: "PF Easta Seven Condensed", sans-serif;

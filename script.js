@@ -12,6 +12,13 @@ let tiempoInicial = 30;
 let tiempo = 30;
 let tiempoRegresivoId = null;
 
+// Sonidos
+let clickAudio = new Audio("./sounds/click.wav");
+let loseAudio = new Audio("./sounds/lose.wav");
+let rightAudio = new Audio("./sounds/right.wav");
+let winAudio = new Audio("./sounds/win.wav");
+let wrongAudio = new Audio("./sounds/wrong.wav");
+
 // DOM
 let movimientosEl = document.getElementById("movimientos");
 let aciertosEl = document.getElementById("aciertos");
@@ -33,14 +40,15 @@ function contarTiempo() {
         tiempoEl.innerHTML = tiempo + " segundos";
         if (tiempo == 0) {
             clearInterval(tiempoRegresivoId);
-            gameOver();
+            gameOver(numbers);
+            loseAudio.play();
         }
     }, 1000);
 }
-function gameOver() {
+function gameOver(numbers) {
     for (let i = 0; i <= 15; i++) {
         let tarjetaBloqueada = document.getElementById(i);
-        tarjetaBloqueada.innerHTML = numbers[i];
+        tarjetaBloqueada.innerHTML = `<img src="imgs/${numbers[i]}.png">`;
         tarjetaBloqueada.classList.add("disabled");
     }
     Swal.fire({
@@ -63,7 +71,8 @@ function voltear(id) {
         // Mostrar primer número
         tarjeta1 = document.getElementById(id);
         primerResultado = numbers[id];
-        tarjeta1.innerHTML = primerResultado;
+        tarjeta1.innerHTML = `<img src="imgs/${primerResultado}.png">`;
+        clickAudio.play();
 
         // Deshabilitar primer botón
         tarjeta1.classList.add("disabled");
@@ -71,7 +80,7 @@ function voltear(id) {
         // Mostrar segundo número
         tarjeta2 = document.getElementById(id);
         segundoResultado = numbers[id];
-        tarjeta2.innerHTML = segundoResultado;
+        tarjeta2.innerHTML = `<img src="imgs/${segundoResultado}.png">`;
 
         // Deshabilitar segundo botón
         tarjeta2.classList.add("disabled");
@@ -82,27 +91,14 @@ function voltear(id) {
         if (primerResultado === segundoResultado) {
             // Encerar contador tarjetas destapadas
             tarjetasVolteadas = 0;
+            rightAudio.play();
 
             // Aumentar los aciertos
             aciertos++;
             aciertosEl.innerHTML = aciertos;
-
-            if (aciertos == 8) {
-                clearInterval(tiempoRegresivoId);
-                aciertosEl.innerHTML = `${aciertos} 😱`;
-                tiempoEl.innerHTML = `Fantástico, solo te demoraste ${
-                    tiempoInicial - tiempo
-                } segundos 🎉`;
-                movimientosEl.innerHTML = `${movimientos} 😎`;
-                Swal.fire({
-                    icon: "success",
-                    title: "¡Enhorabuena!",
-                    text: "Haz ganado 🥳",
-                });
-                replayEl.classList.remove("hidden");
-            }
         } else {
             // Mostrar momentáneamente
+            wrongAudio.play();
             setTimeout(() => {
                 tarjeta1.innerHTML = " ";
                 tarjeta2.innerHTML = " ";
@@ -110,6 +106,21 @@ function voltear(id) {
                 tarjeta2.classList.remove("disabled");
                 tarjetasVolteadas = 0;
             }, 800);
+        }
+        if (aciertos == 8) {
+            clearInterval(tiempoRegresivoId);
+            aciertosEl.innerHTML = `${aciertos} 😱`;
+            tiempoEl.innerHTML = `Fantástico, solo te demoraste ${
+                tiempoInicial - tiempo
+            } segundos 🎉`;
+            movimientosEl.innerHTML = `${movimientos} 😎`;
+            Swal.fire({
+                icon: "success",
+                title: "¡Enhorabuena!",
+                text: "Haz ganado 🥳",
+            });
+            winAudio.play();
+            replayEl.classList.remove("hidden");
         }
     }
 }
