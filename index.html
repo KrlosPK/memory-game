@@ -18,12 +18,16 @@
             rel="stylesheet"
         />
         <link href="http://fonts.cdnfonts.com/css/switzer" rel="stylesheet" />
+
+        <!-- SweetAlert -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body>
         <h2 class="title">JUEGO DE MEMORIA</h2>
         <div class="container">
             <div class="tarjetas">
                 <div class="botones">
+                    <button id="0" onclick="voltear(0)"></button>
                     <button id="1" onclick="voltear(1)"></button>
                     <button id="2" onclick="voltear(2)"></button>
                     <button id="3" onclick="voltear(3)"></button>
@@ -39,14 +43,18 @@
                     <button id="13" onclick="voltear(13)"></button>
                     <button id="14" onclick="voltear(14)"></button>
                     <button id="15" onclick="voltear(15)"></button>
-                    <button id="16" onclick="voltear(16)"></button>
                 </div>
             </div>
             <div class="estadisticas">
-                <h2 id="aciertos">Aciertos:<span>0</span></h2>
-                <h2 id="tiempoRestante">Tiempo:<span>30 segundos</span></h2>
-                <h2 id="movimientos">Movimientos:<span>0</span></h2>
+                <h2>Aciertos:<span id="aciertos">0</span></h2>
+                <h2 id="tiempo">
+                    Tiempo:<span id="tiempoRestante">30 segundos</span>
+                </h2>
+                <h2>Movimientos:<span id="movimientos">0</span></h2>
             </div>
+            <button id="jugarDeNuevo" class="hidden" onclick="return location.reload()">
+                Volver a empezar 🔄
+            </button>
         </div>
         <footer>
             <p>

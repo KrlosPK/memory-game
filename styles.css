@@ -38,11 +38,28 @@ body {
 ::selection {
     color: #ff3f34;
 }
+.play-again {
+    padding: 0.5em 1.3em;
+    border: 0;
+    border-radius: 0.25em;
+    background: initial;
+    background-color: #7066e0;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1em;
+}
+.play-again:hover {
+    background-color: rgb(96, 88, 192);
+}
+.play-again:focus {
+    box-shadow: 0 0 10px 3px #00000088;
+}
 .container {
     display: flex;
     gap: 1em;
     flex-wrap: wrap;
     justify-content: center;
+    position: relative;
 }
 .title {
     text-align: center;
@@ -64,12 +81,15 @@ body {
     transition: background-color 180ms linear;
 }
 .botones button:hover {
-    background-color: #666;
+    background-color: #666666b2;
 }
 .disabled {
     pointer-events: none;
-    background-color: rgb(31, 31, 31);
+    background-color: rgba(31, 31, 31, 0.308);
     color: white;
+}
+.hidden {
+    display: none;
 }
 .estadisticas {
     background-color: #eee;
@@ -78,14 +98,37 @@ body {
     grid-template-rows: repeat(3, 1fr);
     place-content: center;
     padding: 0 1em;
+    flex-wrap: wrap;
+    width: 350px;
 }
 .estadisticas h2 {
     display: flex;
     align-items: center;
     gap: 10px;
 }
+#tiempo {
+    display: flex;
+    flex-wrap: wrap;
+}
 .estadisticas span {
     font-weight: lighter;
+}
+#jugarDeNuevo {
+    font-weight: bold;
+    padding: 0.5em 1.3em;
+    border: 1px solid gray;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #e1b12c;
+    color: white;
+    width: 200px;
+    height: fit-content;
+    transition: background-color 300ms ease;
+    position: absolute;
+    bottom: -4.5em;
+}
+#jugarDeNuevo:hover {
+    background-color: #c59b26;
 }
 footer {
     font-family: "PF Easta Seven Condensed", sans-serif;
