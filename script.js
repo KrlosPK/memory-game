@@ -24,6 +24,7 @@ let movimientosEl = document.getElementById("movimientos");
 let aciertosEl = document.getElementById("aciertos");
 let tiempoEl = document.getElementById("tiempoRestante");
 let replayEl = document.getElementById("jugarDeNuevo");
+let infoEl = document.querySelector("#comoJugar");
 
 // Generación de números aleatorios
 let numbers = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
@@ -32,6 +33,9 @@ numbers.sort(() => {
     return Math.random() - 0.5;
 });
 console.log(numbers);
+
+// Eventos
+infoEl.addEventListener("click", comoJugar);
 
 // Funciones
 function contarTiempo() {
@@ -58,7 +62,15 @@ function gameOver(numbers) {
     });
     replayEl.classList.remove("hidden");
 }
+function comoJugar() {
+    Swal.fire({
+        icon: "info",
+        title: "¿Cómo jugar?",
+        text: "Habrán una serie de parejas de cartas boca abajo. Deberás voltear sucesivamente dos cartas, memorizando la ubicación de las mismas. Cuando se encuentren dos cartas idénticas que formen pareja, se sumará un punto. La partida terminará cuando estén todas las parejas encontradas.",
+    });
+}
 
+// Función Principal
 function voltear(id) {
     if (temporizador == false) {
         contarTiempo();
