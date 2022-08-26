@@ -1,0 +1,103 @@
+@media (max-width: 424px) {
+    .botones button {
+        width: 64px;
+        height: 64px;
+        font-size: 32px;
+    }
+}
+@media (min-width: 425px) {
+    .botones button {
+        width: 96px;
+        height: 96px;
+        font-size: 64px;
+    }
+}
+@media (min-width: 1024px) {
+    .botones button {
+        width: 128px;
+        height: 128px;
+        font-size: 90px;
+    }
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2em;
+    min-height: 100vh;
+    background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+    font-family: "Switzer", sans-serif;
+    background-size: cover;
+}
+::selection {
+    color: #ff3f34;
+}
+.container {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.title {
+    text-align: center;
+    font-size: 36px;
+    color: #1e272e;
+}
+.botones {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 1px;
+    background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+}
+.botones button {
+    cursor: pointer;
+    border-radius: 1px;
+    border: 1px solid #000;
+    transition: background-color 180ms linear;
+}
+.botones button:hover {
+    background-color: #666;
+}
+.disabled {
+    pointer-events: none;
+    background-color: rgb(31, 31, 31);
+    color: white;
+}
+.estadisticas {
+    background-color: #eee;
+    border-radius: 10px;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    place-content: center;
+    padding: 0 1em;
+}
+.estadisticas h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.estadisticas span {
+    font-weight: lighter;
+}
+footer {
+    font-family: "PF Easta Seven Condensed", sans-serif;
+    color: #ff3f34;
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    font-weight: bold;
+    font-size: 20px;
+}
+footer a {
+    color: purple;
+    font-family: "Spooky Pixels", sans-serif;
+}
